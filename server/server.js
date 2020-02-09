@@ -17,7 +17,15 @@ app.get('/usuario', (req, res) => {
 app.post('/usuario', (req, res) => {
 
     let body = req.body
-    res.json(body)
+
+    if (body.nombre === undefined) {
+        res.status(400).json({
+            ok: false,
+            mensaje: 'falta nombre'
+        })
+    } else {
+        res.json(body)
+    }
 })
 
 app.put('/usuario/:id', (req, res) => {
@@ -34,3 +42,5 @@ app.delete('/usuario', (req, res) => {
 })
 
 app.listen(process.env.PORT)
+
+console.log(process.env.PORT)
